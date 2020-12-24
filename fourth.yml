@@ -1,0 +1,21 @@
+- name: Compute Engine Instance Examples
+  hosts: localhost
+  vars:
+    service_account_email: "ujju1981@kvswp22.iam.gserviceaccount.com"
+    credentials_file: "/media/iamadmin/Space4all/Devops/kvswp22-dadae35ef29d.json"
+    project_id: "kvswp22"
+  tasks:
+    - name: Create multiple instances
+      # Basic provisioning example.  Create multiple Debian 8 instances in the
+      # us-central1-a Zone of n1-standard-1 machine type.
+      community.general.gce:
+        instance_names: test1,test2,test3
+        zone: us-central1-a
+        machine_type: e2-medium
+        image: ubuntu-1804-bionic-v20201211a
+        state: present
+        service_account_email: "{{ service_account_email }}"
+        credentials_file: "{{ credentials_file }}"
+        project_id: "{{ project_id }}"
+        metadata : '{ "startup-script" : "apt-get update" }'
+      register: gce

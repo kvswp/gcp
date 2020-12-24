@@ -1,0 +1,18 @@
+for creating instances in google cloud platform
+
+create a project, create service account and generate key for it(on gcp)
+
+install cloud sdk and pip install requests google-auth
+
+and run gcloud init and configure (project,and mail account)
+
+then run ansible playbook with - creating disk, ip address andd at last instance. (we can not run this for multiple instance)
+
+ansible-galaxy collection install community.general (install this for multiple instance yml)
+
+then invoke fourth.yml for multiple instance creation.
+
+ 
+
+
+
