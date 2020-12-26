@@ -1,0 +1,15 @@
+- hosts: all
+  tasks:
+    - name: execute command
+      shell: echo $USER
+      register: cop
+    - name: print output
+      debug:
+        msg: "{{ cop.stdout_lines }}"
+    - name: adding user to docker group
+      user:
+        name: $USER
+        shell: /bin/bash
+        groups: docker
+        append: yes
+

@@ -9,7 +9,7 @@
       # Basic provisioning example.  Create multiple Debian 8 instances in the
       # us-central1-a Zone of n1-standard-1 machine type.
       community.general.gce:
-        instance_names: test1,test2,test3
+        instance_names: master,worker1,worker2
         zone: us-central1-a
         machine_type: e2-medium
         image: ubuntu-1804-bionic-v20201211a
