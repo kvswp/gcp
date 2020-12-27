@@ -35,5 +35,9 @@
         name: docker
         state: started
     - name: add user to docker group
-      shell: echo $USER
+      user:
+        name: swaroop
+        shell: /bin/bash
+        groups: docker
+        append: yes
 
