@@ -1,0 +1,13 @@
+- hosts: dhosts
+  become: yes
+  tasks:
+    - name: add repository
+      apt_repository:
+              repo: ppa:openjdk-r/ppa
+    - name: updte once
+      apt:
+        update_cache: yes
+    - name: install java
+      apt:
+        name: openjdk-8-jdk
+        state: present
