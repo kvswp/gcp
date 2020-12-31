@@ -1,0 +1,16 @@
+touch Dockerfile
+cat <<EOT>> Dockerfile
+FROM devopsedu/webapp
+ADD website /var/www/html
+RUN rm /var/www/html/index.html
+CMD apachectl -D FOREGROUND
+EOT
+docker build -t kvswp/website:$BUILD_NUMBER .
+docker login -u kvswp --password-stdin < ~/myp.txt
+docker push kvswp/website:$BUILD_NUMBER
+if [ $BUILD_NUMBER != 1 ]
+then
+        x=`expr $BUILD_NUMBER - 1`
+        echo "kvswp/website:$x"
+        docker rmi kvswp/website:$x
+fi
