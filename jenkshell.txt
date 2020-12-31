@@ -1,0 +1,10 @@
+touch Dockerfile
+cat <<EOT>> Dockerfile
+FROM devopsedu/webapp
+ADD website /var/www/html
+RUN rm /var/www/html/index.html
+CMD apachectl -D FOREGROUND
+EOT
+docker build -t kvswp/website:$BUILD_NUMBER
+docker login -u kvswp -p kvswp@1234
+docker push kvswp/website:$BUILD_NUMBER
